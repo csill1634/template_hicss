@@ -1,0 +1,59 @@
+% arara: xelatex
+% arara: biber
+% arara: biber
+% arara: xelatex
+
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage[parfill]{parskip}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{mathptmx}% Times new Roman
+
+\usepackage[natbib=true, backend=biber]{biblatex}
+\usepackage[colorinlistoftodos,prependcaption,textsize=small]{todonotes}
+
+\usepackage{xcolor}
+\newcommand\commentsmf[1]{\textit{\textcolor{red}{#1}}}
+\newcommand\commentsbw[1]{\textit{\textcolor{blue}{#1}}}
+
+\title{TITLE}
+\author{AUTHOR}
+
+\usepackage[hidelinks]{hyperref}
+\bibliography{references.bib}
+
+\usepackage{tabularx}
+
+\usepackage{sectsty}
+\sectionfont{\fontsize{14}{11}\selectfont}
+
+\usepackage[left=1in,right=1in,top=1in,bottom=1.13in,includeheadfoot,letterpaper]{geometry}
+\setlength{\parindent}{0.2in}
+\setlength{\columnwidth}{3in}
+\setlength{\columnsep}{.81cm}
+\begin{document}
+
+\maketitle
+
+\section*{\centering Abstract}
+  \textit{
+\todo{Abstract with <=150 words}
+}
+\vspace*{2\baselineskip} % 2 empty lines after abstract
+
+
+\todo{Less than 10 pages!}
+\section{Introduction}
+
+\section{Main Content}
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+\printbibliography
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
