@@ -1,60 +1,92 @@
-% arara: xelatex
-% arara: biber
-% arara: biber
-% arara: xelatex
+% Augmented by Kevin
 
 \documentclass[10pt,twocolumn,letterpaper]{article}
 \usepackage[parfill]{parskip}
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{mathptmx}% Times new Roman
+\usepackage{times}
+\fontfamily{ptm}\selectfont
 
-\usepackage[natbib=true, backend=biber]{biblatex}
-\usepackage[colorinlistoftodos,prependcaption,textsize=small]{todonotes}
+\usepackage[natbib=true, backend=biber, style=ieee]{biblatex}
+\setlength\bibitemsep{\baselineskip}
+\setlength\bibhang{3\baselineskip}
+\renewcommand*{\bibfont}{\fontsize{9}{11}\selectfont \setlength{\parindent}{0pt} \noindent \setlength{\bibhang}{0pt}}
+\DeclareFieldFormat{labelalphawidth}{\mkbibbrackets{#1}~\,}
+\defbibenvironment{bibliography}
+{\list
+  {\printtext[labelalphawidth]{%
+    \printfield{prefixnumber}%
+    \printfield{labelnumber}}}
+  {\setlength{\labelwidth}{\labelalphawidth}%
+    \setlength{\leftmargin}{\labelwidth}%
+    \setlength{\labelsep}{0pt}%
+     \addtolength{\leftmargin}{\labelsep}%
+    \setlength{\itemsep}{\bibitemsep}%
+    \setlength{\parsep}{\bibparsep}}%
+  \renewcommand*{\makelabel}[1]{\hss##1}}
+{\endlist}
+{\item}
 
-\usepackage{xcolor}
-\newcommand\commentsmf[1]{\textit{\textcolor{red}{#1}}}
-\newcommand\commentsbw[1]{\textit{\textcolor{blue}{#1}}}
+\usepackage[justification=centering,
+            font={bf,sf}]{caption}
+\usepackage{secdot}
+\sectiondot{subsection}
+\usepackage{indentfirst}
+\makeatletter
+\def\@seccntformat#1{\csname the#1\endcsname.\ }
+\makeatother
 
-\title{TITLE}
+% no "clubs"
+\clubpenalty = 10000
+% no "widows"
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+\title{{\fontseries{bx}\selectfont \fontsize{14}{17}\selectfont TITLE}}
 \author{AUTHOR}
+\date{}
 
 \usepackage[hidelinks]{hyperref}
 \bibliography{references.bib}
 
-\usepackage{tabularx}
-
 \usepackage{sectsty}
-\sectionfont{\fontsize{14}{11}\selectfont}
+\sectionfont{\fontsize{12}{14}\selectfont}
+\subsectionfont{\fontsize{11}{14}\selectfont}
 
-\usepackage[left=1in,right=1in,top=1in,bottom=1.13in,includeheadfoot,letterpaper]{geometry}
-\setlength{\parindent}{0.2in}
+\usepackage[left=1in,
+            right=1in,
+            top=1in,
+            bottom=1.13in,
+            includeheadfoot,
+            letterpaper,
+            % showframe
+            ]{geometry}
+\setlength{\parindent}{0.25in}
 \setlength{\parskip}{0em}
 \setlength{\columnwidth}{3in}
 \setlength{\columnsep}{.81cm}
+
 \begin{document}
-
+\pagestyle{empty}
 \maketitle
+\thispagestyle{empty}
 
-\section*{\centering Abstract}
-  \textit{
-\todo{Abstract with <=150 words}
+\section*{\centering Abstract}%
+  \textit{%
+  Lorem ipsum
 }
-\vspace*{2\baselineskip} % 2 empty lines after abstract
+\vspace*{1\baselineskip} % 2 empty lines after abstract
 
 
-\todo{Less than 10 pages!}
 \section{Introduction}
 
 \section{Main Content}
+Lorem ipsum~\citep{greenwade93}.
 
 \section{Conclusion}
-\label{sec:conclusion}
 
-\printbibliography
+\section{References}
+\printbibliography[heading=none]
 
 \end{document}
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: t
-%%% End:
